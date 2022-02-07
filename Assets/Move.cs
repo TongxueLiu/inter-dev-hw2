@@ -14,6 +14,8 @@ public class Move : MonoBehaviour
     public TMP_Text titleText;
 
     public SpriteRenderer spr1, spr2;
+
+    public int colorIndex = 1;
     
     // Start is called before the first frame update
     void Start()
@@ -118,12 +120,28 @@ public class Move : MonoBehaviour
             spr1.enabled = false;
         }
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             // Text = "Find the Spot"
             titleText.font = font1;
             titleText.fontSize = 108;
             titleText.text = "Find the Spot";
+
+            switch (colorIndex) {
+                case 1:
+                    gameObject.GetComponent<SpriteRenderer>().color = Color.green;
+                    colorIndex++;
+                    break;
+                case 2:
+                    gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+                    colorIndex++;
+                    break;
+                case 3:
+                    gameObject.GetComponent<SpriteRenderer>().color = Color.black;
+                    colorIndex -= 2;
+                    break;
+
+            }
         }
 
         if (Check() && !start)
